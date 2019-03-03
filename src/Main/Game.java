@@ -2,6 +2,7 @@ package Main;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.util.Random;
 
 public class Game extends Canvas implements Runnable {
 
@@ -10,15 +11,19 @@ public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 640, HEIGHT = WIDTH/12*9;
     private Thread thread;
     private boolean running = false;
+    private Random random;
     private Handler handler;
 
     public Game(){
         new Window(WIDTH, HEIGHT, "Wave", this);
 
         handler = new Handler();
+        random = new Random();
 
-        handler.addObject(new Player(100, 100, ID.Player));
-        handler.addObject(new Player(200, 200, ID.Player));
+        for(int i = 0; i<50; i++){
+            handler.addObject((new Player(random.nextInt(WIDTH), random.nextInt(HEIGHT), ID.Player)));
+        }
+
     }
     public synchronized void start(){
         thread = new Thread(this);
