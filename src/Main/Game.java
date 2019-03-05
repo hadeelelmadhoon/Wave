@@ -25,7 +25,7 @@ public class Game extends Canvas implements Runnable {
         random = new Random();
 
         handler.addObject((new Player(random.nextInt(WIDTH/2-32), random.nextInt(HEIGHT/2-32), ID.Player)));
-
+        this.requestFocusInWindow();
 
     }
     public synchronized void start(){
